@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<style>
+    body {
+        background: #F5F5F5;
+    }
+    div {
+        display: inline-block;
+        flex-direction: row;
+        width: 150px
+    }
+
+    .button {    
+        background-color: #64a6cc;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 24px;
+        padding: 12px 26px;
+    }
+    .button:hover:not(:disabled) {
+        filter: brightness(0.8);
+    }
+</style>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outreach Members</title>
+</head>
+<body>
+    
+    <h1>Outreach Members</h1>
+    <p>If you are in need please sign up for outreach.</p><br>
+    
+
+    <form action="" method="post">
+        <label for="membername">Member Name:</label><br> <br>
+        <input type="text" name="membername"><br> <br>
+        
+        <label for="peoplehelped">Number of Times Helped:</label><br> <br>
+        <input type="number" name="peoplehelped"><br> <br>
+    
+        <br>
+        <div><input action="" formaction="http://localhost:8000/membersubmit.html" type="submit" class="button" value="Register"></div>
+        <div><input action="" type="submit" class="button" value="Update"></div>        
+        <div><input action="" formaction="http://localhost:8000/memberdelete.html" type="submit" class="button" value="Delete"></div>
+    </form>
+
+    
+    <br>
+    <form action= "http://localhost:8000/main.html">
+        <input type="submit" class= "button" value="Back"> 
+    </form>
+
+    <h4>Current Members</h4>
+    <script>
+        con.connect((err) => {
+            if (err) { throw(err); }
+            console.log("database connected");
+        });
+        const shortPoll = () => {
+            setInterval(async() => {
+                con.query("SELECT * FROM members;", function (err, result) {
+                if (err) throw err;
+                console.log(result);
+                });
+            })        
+        
+
+        /*
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("mydb");
+            dbo.collection("people").findAll(function(err, res) {
+            if (err) throw err;
+            console.log("document found");
+            db.close();
+            });
+        });
+        */
+    }
+    </script>
+
+</body>
